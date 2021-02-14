@@ -1,0 +1,1 @@
+import background from "../../static/images/header-bg.png"
