@@ -5,9 +5,9 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyle = makeStyles(()=>({
 
     box:{
-        width:"40vh",
-        height:"40vh",
-        backgroundColor:"blue"
+        width:"60vh",
+        height:"60vh",
+        backgroundColor:"yellow"
     }
 
 

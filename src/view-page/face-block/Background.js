@@ -1,6 +1,8 @@
 import {makeStyles} from "@material-ui/core";
 import background from "../../static/images/header-bg.png"
+import ReclamBlock from "../reclam-block/ReclamBlock";
 import Form from "./call-form/Form";
+import Slider from "./slider/Slider";
 
 
 
@@ -25,7 +27,12 @@ const useStyle = makeStyles(()=> ({
     },
     form:{
         paddingTop:150
-    }
+    },
+    slider: {
+        margin: "0 auto",
+        width: "50%",
+        height: "50%",
+      },
 
 
 
@@ -37,6 +44,7 @@ function Background() {
     const styles = useStyle();
 
     return (
+        <>
         <div className={styles.background}>
             <div className={styles.afterBack}>
                 <div className={styles.form}>
@@ -45,6 +53,11 @@ function Background() {
 
             </div>
         </div>
+        <div className={styles.slider}>
+                <Slider/>
+            </div>
+        <ReclamBlock/>
+    </>
     )
 }
 

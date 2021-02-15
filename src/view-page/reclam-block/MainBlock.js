@@ -6,10 +6,8 @@ import {makeStyles} from "@material-ui/core/styles";
 const useStyle = makeStyles(()=>({
 
     body:{
-        marginLeft: "auto",
-        marginRight: "auto",
-        width: "50em"
-    },
+        marginLeft:"25em"
+},
     box:{
         display:"flex",
         flexDirection:"row-reverse",
