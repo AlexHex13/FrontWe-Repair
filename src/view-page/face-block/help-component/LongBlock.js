@@ -18,7 +18,7 @@ const useStyles = makeStyles(()=>({
         },
         block:{
             display: "flex",
-            marginTop:"10%",
+            marginTop:"5%",
             marginLeft:"30%",
             textAlign:"left"
         },

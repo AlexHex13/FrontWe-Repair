@@ -5,7 +5,6 @@ import img from "../../../static/images/video.png";
 const useStyle = makeStyles(() => ({
   body: {
     width: "100%",
-    height: "60vh",
     color: "black",
   },
   h: {

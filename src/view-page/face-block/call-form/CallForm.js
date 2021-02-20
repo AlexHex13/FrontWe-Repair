@@ -2,24 +2,47 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import MaskedInput from 'react-text-mask';
 import NumberFormat from 'react-number-format';
-import { makeStyles } from '@material-ui/core/styles';
+import {makeStyles} from '@material-ui/core/styles';
 import Input from '@material-ui/core/Input';
-import InputLabel from '@material-ui/core/InputLabel';
-import TextField from '@material-ui/core/TextField';
-import FormControl from '@material-ui/core/FormControl';
 import Button from "@material-ui/core/Button";
+import Typography from "@material-ui/core/Typography";
+import {Checkbox, FormControlLabel} from "@material-ui/core";
 
 const useStyles = makeStyles((theme) => ({
     root: {
-        paddingTop:"5rem",
+        paddingTop: "5rem",
         '& > *': {
             margin: theme.spacing(1),
+            flexDirection: "row",
+            justifyContent: "space-around",
         },
     },
+    field: {
+        marginLeft: "1%"
+    },
+    text: {
+        fontSize: "3vh",
+        textAlign: "left"
+    },
+    form: {
+        display: "flex",
+        flexDirection: "row",
+    },
+    button: {
+        fontSize: "1.2vh"
+    },
+    checkbox:{
+        marginRight:"50%"
+    },
+    mini:{
+        fontSize:"1vh",
+        marginRight:"30%"
+
+    }
 }));
 
 function TextMaskCustom(props) {
-    const { inputRef, ...other } = props;
+    const {inputRef, ...other} = props;
 
     return (
         <MaskedInput
@@ -27,7 +50,7 @@ function TextMaskCustom(props) {
             ref={(ref) => {
                 inputRef(ref ? ref.inputElement : null);
             }}
-            mask={['(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
+            mask={['+7(', /[1-9]/, /\d/, /\d/, ')', ' ', /\d/, /\d/, /\d/, '-', /\d/, /\d/, /\d/, /\d/]}
             placeholderChar={'\u2000'}
             showMask
         />
@@ -39,7 +62,7 @@ TextMaskCustom.propTypes = {
 };
 
 function NumberFormatCustom(props) {
-    const { inputRef, onChange, ...other } = props;
+    const {inputRef, onChange, ...other} = props;
 
     return (
         <NumberFormat
@@ -66,7 +89,7 @@ NumberFormatCustom.propTypes = {
     onChange: PropTypes.func.isRequired,
 };
 
-export default function CallForm() {
+export default function CallForm(props) {
     const classes = useStyles();
     const [values, setValues] = React.useState({
         textmask: '(1  )    -    ',
@@ -81,26 +104,34 @@ export default function CallForm() {
     };
 
     return (
+       <>
         <div className={classes.root}>
-            <TextField
-                label="Введите имя"
-                onChange={handleChange}
-                name="name"
 
+            <Typography className={classes.text}>
+                {props.text}
+            </Typography>
+
+            <span className={classes.form}>
+
+            <Input id="standard-basic" placeholder="Ваше имя"/>
+            <Input
+                value={values.textmask}
+                onChange={handleChange}
+                name="textmask"
+                id="formatted-text-mask-input"
+                inputComponent={TextMaskCustom}
+                className={classes.field}
             />
-            <FormControl>
-                <InputLabel htmlFor="formatted-text-mask-input">Введите ваш номер</InputLabel>
-                <Input
-                    value={values.textmask}
-                    onChange={handleChange}
-                    name="textmask"
-                    id="formatted-text-mask-input"
-                    inputComponent={TextMaskCustom}
-                />
-            </FormControl>
+
             <Button href="#" color="primary" variant="outlined" className={classes.button}>
-                Оставить заявку
+               <span className={classes.button}> Оставить заявку </span>
             </Button>
+                </span>
+
+            <FormControlLabel control={<Checkbox name="checkedC"/>} label="Связаться с Вами по SMS?" className={classes.checkbox}/>
+            <span className={classes.mini}>Нажимая кнопку “Оставить заявку”, я даю согласие на обработку персональных данных</span>
+
         </div>
-    );
+     </>
+);
 }
